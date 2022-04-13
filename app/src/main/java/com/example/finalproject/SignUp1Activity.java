@@ -14,6 +14,7 @@ public class SignUp1Activity extends AppCompatActivity {
 
     EditText username, password, repassword;
     Button next, back;
+    DBHelper DB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
