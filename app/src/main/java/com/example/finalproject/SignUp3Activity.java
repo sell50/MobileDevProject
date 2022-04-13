@@ -8,12 +8,12 @@ import android.widget.EditText;
 
 public class SignUp3Activity extends AppCompatActivity {
 
-    EditText firstname, lastname, email, emailvrf;
-    Button next, back;
-    DBHelper DB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up3);
+
+
     }
 }
