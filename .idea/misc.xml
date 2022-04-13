@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/dariq/Desktop/MobileDevProject/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/dariq/Desktop/MobileDevProject/app/src/main/res/layout/activity_sign_up1.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/dariq/Desktop/MobileDevProject/app/src/main/res/layout/activity_sign_up2.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/dariq/Desktop/MobileDevProject/app/src/main/res/layout/activity_sign_up3.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/dariq/Desktop/MobileDevProject/app/src/main/res/layout/score_bottom_sheet.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>
