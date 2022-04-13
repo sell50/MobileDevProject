@@ -10,7 +10,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     Button register, signin;
-    DBHelper DB;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
