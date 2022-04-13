@@ -23,7 +23,7 @@ public class QuizMenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.activity_quiz_menu);
         quiz1Btn = findViewById(R.id.idQuizBtn1);
         quiz2Btn = findViewById(R.id.idQuizBtn2);
         quiz3Btn = findViewById(R.id.idQuizBtn3);
