@@ -25,6 +25,7 @@ public class SignUp1Activity extends AppCompatActivity {
         repassword= (EditText) findViewById(R.id.repassword);
         next= (Button) findViewById(R.id.nextBtn1);
         back= (Button) findViewById(R.id.backBtn1);
+        DB= new DBHelper(this);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,10 +38,15 @@ public class SignUp1Activity extends AppCompatActivity {
                     Toast.makeText(SignUp1Activity.this, "All fields Required", Toast.LENGTH_SHORT).show();
                 else {
                     if(pass.equals(repass)) {
-                        Intent intent = new Intent(getApplicationContext(), SignUp2Activity.class);
-                        intent.putExtra("username", user);
-                        intent.putExtra("password", pass);
-                        startActivity(intent);
+                        Boolean userExists = DB.checkUsername(user);
+                        if(!userExists){
+                            Intent intent = new Intent(getApplicationContext(), SignUp2Activity.class);
+                            intent.putExtra("username", user);
+                            intent.putExtra("password", pass);
+                            startActivity(intent);
+                        }else{
+                            Toast.makeText(SignUp1Activity.this,"User Already Exists", Toast.LENGTH_SHORT).show();
+                        }
                     }else{
                         Toast.makeText(SignUp1Activity.this,"Passwords are not matching", Toast.LENGTH_SHORT).show();
                     }
