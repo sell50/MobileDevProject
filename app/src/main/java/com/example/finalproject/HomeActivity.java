@@ -3,6 +3,7 @@ package com.example.finalproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -32,6 +33,63 @@ public class HomeActivity extends AppCompatActivity {
         quizModelArrayList = new ArrayList<>();
         random = new Random();
 
+        if (quizChoice == 1) getQuiz1Question(quizModelArrayList);
+        else if (quizChoice == 2) getQuiz2Question(quizModelArrayList);
+        else if (quizChoice == 3) getQuiz3Question(quizModelArrayList);
 
+        currentScore = random.nextInt(quizModelArrayList.size());
+        setDataToViews(currentPos);
+
+        option1Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (quizModelArrayList.get(currentPos).getAnswer().trim().toLowerCase().equals(option1Btn.getText().toString().trim().toLowerCase())){
+                    currentScore++;
+                }
+                questionsAttempted++;
+                currentPos = random.nextInt(quizModelArrayList.size());
+                setDataToViews(currentPos);
+
+            }
+
+
+        });
+
+        option2Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (quizModelArrayList.get(currentPos).getAnswer().trim().toLowerCase().equals(option2Btn.getText().toString().trim().toLowerCase())){
+                    currentScore++;
+                }
+                questionsAttempted++;
+                currentPos = random.nextInt(quizModelArrayList.size());
+                setDataToViews(currentPos);
+
+            }
+        });
+
+        ption3Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (quizModelArrayList.get(currentPos).getAnswer().trim().toLowerCase().equals(option3Btn.getText().toString().trim().toLowerCase())){
+                    currentScore++;
+                }
+                questionsAttempted++;
+                currentPos = random.nextInt(quizModelArrayList.size());
+                setDataToViews(currentPos);
+            }
+        });
+
+        option4Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (quizModelArrayList.get(currentPos).getAnswer().trim().toLowerCase().equals(option4Btn.getText().toString().trim().toLowerCase())){
+                    currentScore++;
+                }
+                questionsAttempted++;
+                currentPos = random.nextInt(quizModelArrayList.size());
+                setDataToViews(currentPos);
+            }
+        });
     }
 }
