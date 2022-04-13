@@ -57,5 +57,13 @@ public class SignUp2Activity extends AppCompatActivity {
                 }
             }
         });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SignUp1Activity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
