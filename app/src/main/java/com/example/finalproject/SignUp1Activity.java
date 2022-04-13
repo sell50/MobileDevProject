@@ -29,14 +29,30 @@ public class SignUp1Activity extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String user = username.getText().toString();
+                String pass = password.getText().toString();
+                String repass = repassword.getText().toString();
 
+                if(TextUtils.isEmpty(user) || TextUtils.isEmpty(pass) || TextUtils.isEmpty(repass))
+                    Toast.makeText(SignUp1Activity.this, "All fields Required", Toast.LENGTH_SHORT).show();
+                else {
+                    if(pass.equals(repass)) {
+                        Intent intent = new Intent(getApplicationContext(), SignUp2Activity.class);
+                        intent.putExtra("username", user);
+                        intent.putExtra("password", pass);
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(SignUp1Activity.this,"Passwords are not matching", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
     }
