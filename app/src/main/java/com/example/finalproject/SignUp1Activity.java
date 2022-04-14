@@ -39,8 +39,8 @@ public class SignUp1Activity extends AppCompatActivity {
                     Toast.makeText(SignUp1Activity.this, "All fields Required", Toast.LENGTH_SHORT).show();
                 else {
                     if(pass.equals(repass)) {
-                        Boolean userExists = DB.checkUsername(user);
-                        if(!userExists){
+                        Boolean checkuser = DB.checkUsername(user);
+                        if(checkuser==false){
                             Intent intent = new Intent(getApplicationContext(), SignUp2Activity.class);
                             intent.putExtra("username", user);
                             intent.putExtra("password", pass);

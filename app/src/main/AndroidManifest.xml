@@ -10,19 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalProject">
         <activity
-            android:name=".QuizMenuActivity"
+            android:name=".HomeActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUp3Activity"
+            android:name=".QuizMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignUp1Activity"
             android:exported="false" />
         <activity
             android:name=".SignUp2Activity"
             android:exported="false" />
         <activity
-            android:name=".SignUp1Activity"
+            android:name=".SignUp3Activity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
