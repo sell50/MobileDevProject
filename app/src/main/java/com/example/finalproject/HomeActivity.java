@@ -2,7 +2,9 @@ package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -26,7 +28,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         questionTV = findViewById(R.id.idTVQuestion);
         questionNumberTV = findViewById(R.id.idTVQuestionAttempted);
         option1Btn = findViewById(R.id.idBtnOption1);
@@ -102,6 +103,8 @@ public class HomeActivity extends AppCompatActivity {
         View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.score_bottom_sheet,(LinearLayout)findViewById(R.id.idLLScore));
         TextView scoreTV = bottomSheetView.findViewById(R.id.idTvScore);
         Button restartQuizBtn = bottomSheetView.findViewById(R.id.idBtnRestart);
+        Button quizMenuBtn = bottomSheetView.findViewById(R.id.idBtnMenu);
+        Button signoutBtn = bottomSheetView.findViewById(R.id.idBtnSignOut);
         scoreTV.setText("Your score is\n"+currentScore + "/10"); //change if number of questions change
 
         restartQuizBtn.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +115,22 @@ public class HomeActivity extends AppCompatActivity {
                 questionsAttempted = 1;
                 currentScore = 0;
                 bottomSheetDialog.dismiss();
+            }
+        });
+
+        quizMenuBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), QuizMenuActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        signoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
 
