@@ -81,8 +81,6 @@
             android:padding="4dp"
             android:text="Option 4"
             android:textAllCaps="false" />
-
-
     </LinearLayout>
 
 
