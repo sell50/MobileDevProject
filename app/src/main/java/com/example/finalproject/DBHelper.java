@@ -54,12 +54,12 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
     }
 
+    //
     public String getFirstName(String username) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("select fname from users where username=?", new String[] {username});
+        Cursor cursor = db.rawQuery("SELECT fname FROM users WHERE username=?", new String[] {username});
         if(cursor.moveToFirst()) {
-            String fname = cursor.getString(0);
-            return fname;
+            return null;
         }
         else return null;
     }
