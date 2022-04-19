@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,7 +31,7 @@ public class HomeActivity extends AppCompatActivity {
     TextView result;
     int currentScore = 0, questionsAttempted = 1, currentPos, quizChoice;
     DBHelper db;
-    String username, fname;
+    String uname, fname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,44 +53,41 @@ public class HomeActivity extends AppCompatActivity {
 
         // code for user display and menu button
         Bundle userInfo = getIntent().getExtras();
-        username = userInfo.getString("USER");
+        uname = userInfo.getString("USER");
         fname = userInfo.getString("FNAME");
 
-        if (username != null && fname != null) {
-            userDisplay.setText("Welcome, " + fname + " (" + username + ")!");
+        if (TextUtils.isEmpty(uname) || TextUtils.isEmpty(fname)) {
+            userDisplay.setText("");
         }
-        else userDisplay.setText("");
+        else userDisplay.setText("Welcome, " + fname + " (" + uname + ")!");
 
-        userMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PopupMenu menu = new PopupMenu(HomeActivity.this, userMenu);
+        userMenu.setOnClickListener(view -> {
+            PopupMenu menu = new PopupMenu(HomeActivity.this, userMenu);
 
-                menu.getMenuInflater().inflate(R.menu.user_menu, menu.getMenu());
-                menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
-                        if (menuItem.getItemId() == R.id.profile) {
-                            Intent intent_profile = new Intent(HomeActivity.this, ProfileActivity.class);
-                            startActivity(intent_profile);
-                        }
-                        else if (menuItem.getItemId() == R.id.progress) {
-                            Intent intent_progress = new Intent(HomeActivity.this, ProgressActivity.class);
-                            startActivity(intent_progress);
-                        }
-                        else if (menuItem.getItemId() == R.id.settings) {
-                            Intent intent_settings = new Intent(HomeActivity.this, SettingsActivity.class);
-                            startActivity(intent_settings);
-                        }
-                        else if (menuItem.getItemId() == R.id.signout) {
-                            Intent intent_signout = new Intent(HomeActivity.this, MainActivity.class);
-                            startActivity(intent_signout);
-                        }
-                        return true;
+            menu.getMenuInflater().inflate(R.menu.user_menu, menu.getMenu());
+            menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    if (menuItem.getItemId() == R.id.profile) {
+                        Intent intent_profile = new Intent(HomeActivity.this, ProfileActivity.class);
+                        startActivity(intent_profile);
                     }
-                });
-                menu.show();
-            }
+                    else if (menuItem.getItemId() == R.id.progress) {
+                        Intent intent_progress = new Intent(HomeActivity.this, ProgressActivity.class);
+                        startActivity(intent_progress);
+                    }
+                    else if (menuItem.getItemId() == R.id.settings) {
+                        Intent intent_settings = new Intent(HomeActivity.this, SettingsActivity.class);
+                        startActivity(intent_settings);
+                    }
+                    else if (menuItem.getItemId() == R.id.signout) {
+                        Intent intent_signout = new Intent(HomeActivity.this, MainActivity.class);
+                        startActivity(intent_signout);
+                    }
+                    return true;
+                }
+            });
+            menu.show();
         });
 
         // code for quiz
@@ -100,77 +98,65 @@ public class HomeActivity extends AppCompatActivity {
         currentScore = random.nextInt(quizModelArrayList.size());
         setDataToViews(currentPos);
 
-        btn_choice1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (quizModelArrayList.get(currentPos).getAnswer().trim().toLowerCase().equals(btn_choice1.getText().toString().trim().toLowerCase())){
-                    currentScore++;
-                    result.setText("Correct!");
-                    result.setTextColor(Color.GREEN);
-                }
-                else {
-                    result.setText("Oops! You're wrong!");
-                    result.setTextColor(Color.RED);
-                }
-                questionsAttempted++;
-                currentPos = random.nextInt(quizModelArrayList.size());
-                setDataToViews(currentPos);
+        btn_choice1.setOnClickListener(view -> {
+            if (quizModelArrayList.get(currentPos).getAnswer().trim().toLowerCase().equals(btn_choice1.getText().toString().trim().toLowerCase())){
+                currentScore++;
+                result.setText("Correct!");
+                result.setTextColor(Color.GREEN);
             }
+            else {
+                result.setText("Oops! You're wrong!");
+                result.setTextColor(Color.RED);
+            }
+            questionsAttempted++;
+            currentPos = random.nextInt(quizModelArrayList.size());
+            setDataToViews(currentPos);
         });
 
-        btn_choice2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (quizModelArrayList.get(currentPos).getAnswer().trim().toLowerCase().equals(btn_choice2.getText().toString().trim().toLowerCase())){
-                    currentScore++;
-                    result.setText("Correct!");
-                    result.setTextColor(Color.GREEN);
-                }
-                else {
-                    result.setText("Oops! You're wrong!");
-                    result.setTextColor(Color.RED);
-                }
-                questionsAttempted++;
-                currentPos = random.nextInt(quizModelArrayList.size());
-                setDataToViews(currentPos);
-
+        btn_choice2.setOnClickListener(view -> {
+            if (quizModelArrayList.get(currentPos).getAnswer().trim().toLowerCase().equals(btn_choice2.getText().toString().trim().toLowerCase())){
+                currentScore++;
+                result.setText("Correct!");
+                result.setTextColor(Color.GREEN);
             }
+            else {
+                result.setText("Oops! You're wrong!");
+                result.setTextColor(Color.RED);
+            }
+            questionsAttempted++;
+            currentPos = random.nextInt(quizModelArrayList.size());
+            setDataToViews(currentPos);
+
         });
 
-        btn_choice3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (quizModelArrayList.get(currentPos).getAnswer().trim().toLowerCase().equals(btn_choice3.getText().toString().trim().toLowerCase())){
-                    currentScore++;
-                    result.setText("Correct!");
-                    result.setTextColor(Color.GREEN);
-                }
-                else {
-                    result.setText("Oops! You're wrong!");
-                    result.setTextColor(Color.RED);
-                }
-                questionsAttempted++;
-                currentPos = random.nextInt(quizModelArrayList.size());
-                setDataToViews(currentPos);
+        btn_choice3.setOnClickListener(view -> {
+            if (quizModelArrayList.get(currentPos).getAnswer().trim().toLowerCase().equals(btn_choice3.getText().toString().trim().toLowerCase())){
+                currentScore++;
+                result.setText("Correct!");
+                result.setTextColor(Color.GREEN);
             }
+            else {
+                result.setText("Oops! You're wrong!");
+                result.setTextColor(Color.RED);
+            }
+            questionsAttempted++;
+            currentPos = random.nextInt(quizModelArrayList.size());
+            setDataToViews(currentPos);
         });
 
-        btn_choice4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (quizModelArrayList.get(currentPos).getAnswer().trim().toLowerCase().equals(btn_choice4.getText().toString().trim().toLowerCase())){
-                    currentScore++;
-                    result.setText("Correct!");
-                    result.setTextColor(Color.GREEN);
-                }
-                else {
-                    result.setText("Oops! You're wrong!");
-                    result.setTextColor(Color.RED);
-                }
-                questionsAttempted++;
-                currentPos = random.nextInt(quizModelArrayList.size());
-                setDataToViews(currentPos);
+        btn_choice4.setOnClickListener(view -> {
+            if (quizModelArrayList.get(currentPos).getAnswer().trim().toLowerCase().equals(btn_choice4.getText().toString().trim().toLowerCase())){
+                currentScore++;
+                result.setText("Correct!");
+                result.setTextColor(Color.GREEN);
             }
+            else {
+                result.setText("Oops! You're wrong!");
+                result.setTextColor(Color.RED);
+            }
+            questionsAttempted++;
+            currentPos = random.nextInt(quizModelArrayList.size());
+            setDataToViews(currentPos);
         });
     }
 
@@ -183,31 +169,23 @@ public class HomeActivity extends AppCompatActivity {
         Button signoutBtn = bottomSheetView.findViewById(R.id.idBtnSignOut);
         scoreTV.setText("Your score is\n"+currentScore + "/10"); //change if number of questions change
 
-        restartQuizBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                bottomSheetDialog.dismiss();
-                currentPos = random.nextInt(quizModelArrayList.size());
-                setDataToViews(currentPos);
-                questionsAttempted = 1;
-                currentScore = 0;
-            }
+        restartQuizBtn.setOnClickListener(view -> {
+            bottomSheetDialog.dismiss();
+            currentPos = random.nextInt(quizModelArrayList.size());
+            setDataToViews(currentPos);
+            questionsAttempted = 1;
+            currentScore = 0;
+            result.setText("");
         });
 
-        quizMenuBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), QuizMenuActivity.class);
-                startActivity(intent);
-            }
+        quizMenuBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), QuizMenuActivity.class);
+            startActivity(intent);
         });
 
-        signoutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-            }
+        signoutBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
         });
 
         bottomSheetDialog.setCancelable(false);

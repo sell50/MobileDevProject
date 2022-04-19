@@ -17,12 +17,9 @@ public class SettingsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         homeBtn = findViewById(R.id.homeBtn1);
 
-        homeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent_main = new Intent(SettingsActivity.this, MainActivity.class);
-                startActivity(intent_main);
-            }
+        homeBtn.setOnClickListener(view -> {
+            Intent intent_main = new Intent(SettingsActivity.this, MainActivity.class);
+            startActivity(intent_main);
         });
     }
 }

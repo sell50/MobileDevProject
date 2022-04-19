@@ -28,32 +28,22 @@ public class QuizMenuActivity extends AppCompatActivity {
         quiz2Btn = findViewById(R.id.idQuizBtn2);
         quiz3Btn = findViewById(R.id.idQuizBtn3);
 
-        quiz1Btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                intent.putExtra("QUIZ CHOICE",1);
-                startActivity(intent);
-            }
+        quiz1Btn.setOnClickListener(view -> {
+            Intent intent = new Intent(QuizMenuActivity.this, HomeActivity.class);
+            intent.putExtra("QUIZ CHOICE",1);
+            startActivity(intent);
         });
 
-        quiz2Btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                intent.putExtra("QUIZ CHOICE",2);
-                startActivity(intent);
-            }
-
+        quiz2Btn.setOnClickListener(view -> {
+            Intent intent = new Intent(QuizMenuActivity.this, HomeActivity.class);
+            intent.putExtra("QUIZ CHOICE",2);
+            startActivity(intent);
         });
 
-        quiz3Btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                intent.putExtra("QUIZ CHOICE",3);
-                startActivity(intent);
-            }
+        quiz3Btn.setOnClickListener(view -> {
+            Intent intent = new Intent(QuizMenuActivity.this, HomeActivity.class);
+            intent.putExtra("QUIZ CHOICE",3);
+            startActivity(intent);
         });
     }
 }

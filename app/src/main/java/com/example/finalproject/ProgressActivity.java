@@ -16,12 +16,9 @@ public class ProgressActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         homeBtn = findViewById(R.id.homeBtn2);
 
-        homeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent_main = new Intent(ProgressActivity.this, MainActivity.class);
-                startActivity(intent_main);
-            }
+        homeBtn.setOnClickListener(view -> {
+            Intent intent_main = new Intent(ProgressActivity.this, MainActivity.class);
+            startActivity(intent_main);
         });
     }
 }
