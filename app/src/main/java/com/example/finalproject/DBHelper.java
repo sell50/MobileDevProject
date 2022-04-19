@@ -54,11 +54,14 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
     }
 
-    public Boolean checkEmailAddress(String email) {
+    public String getFirstName(String username) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("select * from users where email=?", new String[] {email});
-        if(cursor.getCount()>0) return true;
-        else return false;
+        Cursor cursor = db.rawQuery("select fname from users where username=?", new String[] {username});
+        if(cursor.moveToFirst()) {
+            String fname = cursor.getString(0);
+            return fname;
+        }
+        else return null;
     }
 
     public Boolean checkUsernamePassword(String username, String password) {

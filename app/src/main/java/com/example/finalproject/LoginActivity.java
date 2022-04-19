@@ -38,8 +38,11 @@ public class LoginActivity extends AppCompatActivity {
                 else{
                     Boolean checkuserpass = DB.checkUsernamePassword(user, pass);
                     if(checkuserpass==true){
+                        String fname = DB.getFirstName(user);
                         Toast.makeText(LoginActivity.this,"Login Successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), QuizMenuActivity.class);
+                        intent.putExtra("FNAME", fname);
+                        intent.putExtra("USER", user);
                         startActivity(intent);
                     }else{
                         Toast.makeText(LoginActivity.this,"Login Failed", Toast.LENGTH_SHORT).show();
