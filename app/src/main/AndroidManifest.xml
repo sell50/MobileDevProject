@@ -19,13 +19,7 @@
             android:name=".QuizMenuActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUp1Activity"
-            android:exported="false" />
-        <activity
-            android:name=".SignUp2Activity"
-            android:exported="false" />
-        <activity
-            android:name=".SignUp3Activity"
+            android:name=".SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
