@@ -40,7 +40,8 @@
         android:hint="Password"
         android:paddingLeft="20dp"
         android:textColorHint="@color/black"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+        android:inputType="textPassword" />
 
 
     <Button
