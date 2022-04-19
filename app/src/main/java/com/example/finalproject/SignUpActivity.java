@@ -68,6 +68,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                                     // pass user session and go to quiz menu
                                     Intent intent = new Intent(SignUpActivity.this, QuizMenuActivity.class);
+                                    //
                                     intent.putExtra("USER", user);
                                     intent.putExtra("FNAME", fn);
                                     startActivity(intent);

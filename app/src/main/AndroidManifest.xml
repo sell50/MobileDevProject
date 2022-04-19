@@ -8,8 +8,19 @@
         android:label="Quizzard - Quiz Wizard Learning"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-
         android:theme="@style/Theme.FinalProject">
+        <activity
+            android:name=".ProgressActivity"
+            android:parentActivityName=".QuizMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingsActivity"
+            android:parentActivityName=".QuizMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileActivity"
+            android:parentActivityName=".QuizMenuActivity"
+            android:exported="false" />
         <activity
             android:name=".HomeActivity"
             android:exported="false" />

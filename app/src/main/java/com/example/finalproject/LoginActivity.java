@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
                         String fname = DB.getFirstName(user);
                         Toast.makeText(LoginActivity.this,"Login Successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), QuizMenuActivity.class);
+                        //
                         intent.putExtra("FNAME", fname);
                         intent.putExtra("USER", user);
                         startActivity(intent);

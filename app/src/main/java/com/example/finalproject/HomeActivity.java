@@ -70,15 +70,15 @@ public class HomeActivity extends AppCompatActivity {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         if (menuItem.getItemId() == R.id.profile) {
-                            Intent intent_profile = new Intent(HomeActivity.this, MainActivity.class);
+                            Intent intent_profile = new Intent(HomeActivity.this, ProfileActivity.class);
                             startActivity(intent_profile);
                         }
                         else if (menuItem.getItemId() == R.id.progress) {
-                            Intent intent_progress = new Intent(HomeActivity.this, MainActivity.class);
+                            Intent intent_progress = new Intent(HomeActivity.this, ProgressActivity.class);
                             startActivity(intent_progress);
                         }
                         else if (menuItem.getItemId() == R.id.settings) {
-                            Intent intent_settings = new Intent(HomeActivity.this, MainActivity.class);
+                            Intent intent_settings = new Intent(HomeActivity.this, SettingsActivity.class);
                             startActivity(intent_settings);
                         }
                         else if (menuItem.getItemId() == R.id.signout) {
