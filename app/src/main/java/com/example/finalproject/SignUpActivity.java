@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,7 +13,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     EditText user, pass, passvrf, firstname, lastname, email, emailvrf, birthdate, gender;
     Button register, back;
-    DBHelper DB;
+    QuizzardDB DB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +22,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         user= findViewById(R.id.username);
         pass= findViewById(R.id.password);
-        passvrf= findViewById(R.id.repassword);
+        passvrf= findViewById(R.id.password_vrf);
         firstname= findViewById(R.id.firstname);
         lastname= findViewById(R.id.lastname);
         email= findViewById(R.id.emailaddr);
@@ -33,7 +32,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         register= findViewById(R.id.register);
         back= findViewById(R.id.backBtn);
-        DB= new DBHelper(this);
+        DB= new QuizzardDB(this);
 
         register.setOnClickListener(view -> {
             // get user input from fields
@@ -52,14 +51,14 @@ public class SignUpActivity extends AppCompatActivity {
                 Toast.makeText(SignUpActivity.this, "All fields but gender required", Toast.LENGTH_SHORT).show();
             }
             else {
-                if(pass.equals(pw2)) {
+                if(pw.equals(pw2)) {
                     // check if user is taken
-                    Boolean userTaken = DB.checkUsername(un);
+                    Boolean userTaken = DB.isUsernameAvailable(un);
                     if(!userTaken){
                         // check that email address is confirmed
                         if (em.equals(em2)) {
                             // if it is, insert user info into database
-                            Boolean insert = DB.insertData(un, pw, fn, ln, em, dob, gndr);
+                            Boolean insert = DB.registerUser(un, pw, fn, ln, em, dob, gndr);
                             if(insert==true){
                                 // display registration success message
                                 Toast.makeText(SignUpActivity.this, "Registered successful", Toast.LENGTH_SHORT).show();

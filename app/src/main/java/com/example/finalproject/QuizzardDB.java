@@ -8,10 +8,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-public class DBHelper extends SQLiteOpenHelper {
+public class QuizzardDB extends SQLiteOpenHelper {
 
     public static final String DBNAME="login.db";
-    public DBHelper(Context context) {
+    public QuizzardDB(Context context) {
 
         super(context, "login.db", null, 1);
     }
@@ -26,7 +26,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("drop table if exists users");
     }
 
-    public Boolean insertData(String username, String password, String fname, String lname, String email, String dob, String gender) {
+    public Boolean registerUser(String username, String password, String fname, String lname, String email, String dob, String gender) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -39,37 +39,29 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put("gender", gender);
 
         long result = db.insert("users", null, values);
-        if(result==-1)
-            return false;
-        else
-            return true;
+        if(result==-1) return false;
+        else return true;
     }
 
-    public Boolean checkUsername(String username) {
+    public Boolean isUsernameAvailable(String username) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("select * from users where username=?", new String[] {username});
-        if(cursor.getCount()>0)
-            return true;
-        else
-            return false;
+        if(cursor.getCount()>0) return true;
+        else return false;
     }
 
     //
     public String getFirstName(String username) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT fname FROM users WHERE username=?", new String[] {username});
-        if(cursor.moveToFirst()) {
-            return null;
-        }
+        if(cursor.moveToFirst())  return null;
         else return null;
     }
 
-    public Boolean checkUsernamePassword(String username, String password) {
+    public Boolean validateUser(String username, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("select * from users where username=? and password=?", new String[] {username,password});
-        if(cursor.getCount()>0)
-            return true;
-        else
-            return false;
+        if(cursor.getCount()>0) return true;
+        else return false;
     }
 }

@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -30,7 +29,7 @@ public class HomeActivity extends AppCompatActivity {
     Button userMenu;
     TextView result;
     int currentScore = 0, questionsAttempted = 1, currentPos, quizChoice;
-    DBHelper db;
+    QuizzardDB db;
     String uname, fname;
 
     @Override
@@ -49,7 +48,7 @@ public class HomeActivity extends AppCompatActivity {
         quizChoice = getIntent().getIntExtra("QUIZ CHOICE", 1);
         quizModelArrayList = new ArrayList<>();
         random = new Random();
-        db = new DBHelper(this);
+        db = new QuizzardDB(this);
 
         // code for user display and menu button
         Bundle userInfo = getIntent().getExtras();
